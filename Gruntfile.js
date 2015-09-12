@@ -230,7 +230,7 @@ module.exports = function (grunt) {
         src: [
           '<%= yeoman.dist %>/client/!(bower_components){,*/}*.{js,css}',
           '<%= yeoman.dist %>/client/assets/images/{,*/}*.{png,jpg,jpeg,gif,webp,svg}',
-          '<%= yeoman.dist %>/client/assets/fonts/*'
+          //'<%= yeoman.dist %>/client/assets/fonts/*'
         ]
       }
     },
@@ -352,13 +352,21 @@ module.exports = function (grunt) {
             'package.json',
             'server/**/*'
           ]
-        }]
+        },{
+        //include font awesome webfonts
+        expand: true,
+        dot: true,
+        cwd: '<%= yeoman.client %>/bower_components/font-awesome',
+        src: ['fonts/*.*'],
+        dest: '<%= yeoman.dist %>/public/assets'
+        }
+        ]
       },
       styles: {
         expand: true,
         cwd: '<%= yeoman.client %>',
         dest: '.tmp/',
-        src: ['{app,components}/**/*.css']
+        src: ['{app,components}/**/**/*.css']
       }
     },
 
