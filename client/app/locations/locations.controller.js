@@ -1,6 +1,6 @@
 'use strict';
 
 angular.module('houseofmodaApp')
-  .controller('MainCtrl', function($scope, $http) {
+  .controller('LocationsCtrl', function($scope, $http) {
     
   });

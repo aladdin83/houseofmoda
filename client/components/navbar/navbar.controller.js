@@ -5,6 +5,15 @@ angular.module('houseofmodaApp')
     $scope.menu = [{
       'title': 'Home',
       'state': 'main'
+    },{
+      'title': 'Locations',
+      'state': 'locations'
+    },{
+      'title': 'About Us',
+      'state': 'aboutus'
+    },{
+      'title': 'Contact Us',
+      'state': 'contactus'
     }];
 
     $scope.isCollapsed = true;

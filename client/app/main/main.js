@@ -8,4 +8,5 @@ angular.module('houseofmodaApp')
         templateUrl: 'app/main/main.html',
         controller: 'MainCtrl'
       });
+      
   });

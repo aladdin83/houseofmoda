@@ -1,4 +1,4 @@
-<div class="navbar navbar-default navbar-static-top" ng-controller="NavbarCtrl">
+<div class="navbar navbar-default navbar-static-top navbar-inverse" ng-controller="NavbarCtrl">
   <div class="container">
     <div class="navbar-header">
       <button class="navbar-toggle" type="button" ng-click="isCollapsed = !isCollapsed">
@@ -14,9 +14,10 @@
         <li ng-repeat="item in menu" ui-sref-active="active">
             <a ui-sref="{{item.state}}">{{item.title}}</a>
         </li>
-        <li> 
-          <i class="fa fa-phone"></i>
-          <a href="#">+971502032278</a>
+      </ul>
+      <ul class="nav navbar-nav pull-right">
+        <li>
+          <a  href="#"><i class="fa fa-phone"></i> +971502032278</a>
         </li>
       </ul>
     </div>
