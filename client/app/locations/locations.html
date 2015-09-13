@@ -1,1 +1,37 @@
 <navbar></navbar>
+<div class="container">
+	<div class="row">
+		<div class="col-sm-4">
+			<img class="sidebar-background" src="assets/images/14337.jpg" alt="">
+		</div>
+		<div class="col-sm-8">
+			<ui-gmap-google-map center='map.center' zoom='map.zoom'>
+				<ui-gmap-marker ng-repeat="location in locations"
+				idKey='location.id'
+				coords='location.coords'
+				>
+				</ui-gmap-marker>
+			</ui-gmap-google-map>
+			<ul class="locations-list">
+				<li class="location">
+					<h3 class="location-title">Ajman</h3>
+					<p class="location-address">
+						New Industrial Area - Beirute Street<br/>
+						Sheikhani Group Building - Shop #4
+					</p>		
+				</li>
+				<li>
+					<h3 class="location-title">Dubai</h3>
+					<p class="location-address">
+						Khawaneej Road, Al Mizhar 1,opp Mushrif Park<br/>
+						Arabian Centre
+					</p>		
+				</li>
+			</ul>
+			
+			
+			
+			
+		</div>
+	</div>
+</div>
