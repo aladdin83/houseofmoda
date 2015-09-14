@@ -6,7 +6,8 @@ angular.module('houseofmodaApp', [
   'ngSanitize',
   'ui.router',
   'ui.bootstrap',
-  'uiGmapgoogle-maps'
+  'uiGmapgoogle-maps',
+  'slickCarousel'
 ]).config(function(uiGmapGoogleMapApiProvider) {
     uiGmapGoogleMapApiProvider.configure({
         key: 'AIzaSyBMykWOQWL5I4lYyM2u8bZM4BGglFWH7aI',

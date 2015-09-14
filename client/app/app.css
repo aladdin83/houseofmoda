@@ -38,3 +38,37 @@
   padding: 0.2em 0;
 }
 
+.global-padding{
+  padding-top: 50px;
+}
+
+/**
+* Section Title
+*/
+
+.section-title{
+  font-size: 42px;
+  font-weight: lighter;
+  line-height: 44px;
+  margin: 20px 0 20px;
+  padding: 0px;
+  position: 0;
+  text-align: center;
+}
+
+.section-title:after{
+  height: 1px;
+  background-color: #ddd;
+  display: block;
+  content: "";
+  position: absolute;
+  top: 38px;
+  width: 60%;
+  margin-left: 20%;
+  z-index: -1;
+}
+
+.section-title span{
+  padding: 10px;
+  background: #fff;
+}
