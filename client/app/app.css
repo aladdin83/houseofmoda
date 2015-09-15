@@ -72,3 +72,8 @@
   padding: 10px;
   background: #fff;
 }
+
+.btn-primary{
+  border-color: #e7b959;
+  background-color: #e7b959;
+}

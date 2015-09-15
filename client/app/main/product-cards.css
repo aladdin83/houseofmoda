@@ -4,6 +4,30 @@
 	margin-right: 20px; 
 }
 
+.product-card-wrapper:hover{
+	border-color: #e7b959;
+}
+
 .product-card img{
 	width: 100%;
+}
+
+.product-card .item-code{
+	margin-top: 10px;
+	font-weight: lighter;
+	font-size: 110%;
+}
+
+.product-card .item-sizes{
+	text-align: center;
+	font-size: 80%;
+}
+
+.product-card .item-price{
+	text-align: center;
+	
+}
+
+.product-card .item-actions{
+	text-align: center;
 }

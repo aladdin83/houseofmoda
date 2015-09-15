@@ -18,10 +18,41 @@
   padding: 30px 15px;
   color: #F5F5F5;
   text-align: center;
-  text-shadow: 0 1px 0 rgba(0, 0, 0, 0.1);
-  background: burlywood url('assets/images/hero-background.jpg');
+  text-shadow: 1px 1px 10px rgba(0, 0, 0, 0.5);
+}
+
+#hero-overlay{
+  position: absolute;
+  top: 0px;
+  width: 100%;
+  height: 100%;  
 }
 
 .navbar-text {
   margin-left: 15px;
+}
+
+.section-divider{
+  background-color: #e7b959;
+  min-height: 100px;
+  color: #F5F5F5;
+  text-align: center;
+  padding: 25px;
+  margin-top: 80px;
+}
+
+/* SECTION DIVIDER */
+
+.section-divider h1{
+  font-weight: lighter;
+  font-size: 600%;
+}
+
+.section-divider h2{
+  font-size: 400%;
+}
+
+/* OUR COLLECTION SECTION */
+.item-wrapper{
+  margin-top: 40px;
 }

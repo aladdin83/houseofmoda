@@ -12,19 +12,13 @@
 				>
 				</ui-gmap-marker>
 			</ui-gmap-google-map>
-			<ul class="locations-list">
-				<li class="location">
-					<h3 class="location-title">Ajman</h3>
+			<ul class="locations-list list-group">
+				<li class="location list-group-item" ng-repeat="location in locations">
+					<h3 class="location-title"><a href="#" ng-click="position(location)"><i class="fa fa-map-marker"></i> {{location.city}}</a></h3>
 					<p class="location-address">
-						New Industrial Area - Beirute Street<br/>
-						Sheikhani Group Building - Shop #4
-					</p>		
-				</li>
-				<li>
-					<h3 class="location-title">Dubai</h3>
-					<p class="location-address">
-						Khawaneej Road, Al Mizhar 1,opp Mushrif Park<br/>
-						Arabian Centre
+						{{location.address_line1}}<br/>
+						{{location.address_line2}}<br/>
+						<i class="fa fa-phone"></i> {{location.phone}}
 					</p>		
 				</li>
 			</ul>
