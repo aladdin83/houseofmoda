@@ -54,5 +54,9 @@
 
 /* OUR COLLECTION SECTION */
 .item-wrapper{
-  margin-top: 40px;
+  margin-top: 30px;
+}
+
+#our-collection-section .product-card-wrapper{
+  margin-right: 0px;
 }

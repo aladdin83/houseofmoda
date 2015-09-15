@@ -39,8 +39,8 @@
   <div class="row global-padding">
     <div class="col-lg-12">
       <h3 class="section-title"><span>OUR COLLECTION</span></h3>
-      <div id="our-collection-section" ng-repeat="item in items">
-            <div class="item-wrapper col-md-3" ng-include="'app/main/product-card.html'"></div>
+      <div id="our-collection-section" >
+            <div ng-repeat="item in items" class="item-wrapper col-md-3" ng-include="'app/main/product-card.html'"></div>
       </div>
     </div>
   </div>

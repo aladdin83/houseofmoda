@@ -11,31 +11,68 @@ angular.module('houseofmodaApp')
     }
     $scope.items = [
       {
-        id:10500,
+        id:11187,
+        sizes: "S / M / L / XL",
+        price: 530
+      },
+      {
+        id:11195,
+        sizes: "Free Size",
+        price: 480
+      },
+      {
+        id:11158,
         sizes: "S / M / L / XL",
         price: 450
-      },
-      {
-        id:10501,
-        sizes: "Free Size",
-        price: 350
-      },
-      {
-        id:10503,
-        sizes: "M / L",
-        price: 480
         },
       {
-        id:10504,
-        sizes: "M / L / XL",
-        price: 480
+        id:11167,
+        sizes: "S / M / L / XL",
+        price: 550
         },
       {
-        id:10505,
-        sizes: "Free Size",
-        price: 520
-        }
+        id:11161,
+        sizes: "S / M / L / XL",
+        price: 360
+      },
+      {
+        id:11180,
+        sizes: "Free",
+        price: 580
+      },
+      {
+        id:11163,
+        sizes: "Free",
+        price: 375
+      },
+      {
+        id:11146,
+        sizes: "Free",
+        price: 680
+      },
+      {
+        id:11144,
+        sizes: "S / M / L / XL",
+        price: 560
+      },
+      {
+        id:11142,
+        sizes: "S / M / L / XL",
+        price: 530
+      },
+      {
+        id:11135,
+        sizes: "S / M / L / XL",
+        price: 580
+      },
+      {
+        id:11132,
+        sizes: "S / M / L / XL",
+        price: 450
+      }
     ];
     $scope.itemsLoaded = true;
-   
+    $scope.addToFav = function(item){
+      console.log(item);
+    }
   });

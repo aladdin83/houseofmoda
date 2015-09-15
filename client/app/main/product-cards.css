@@ -8,6 +8,10 @@
 	border-color: #e7b959;
 }
 
+.product-card{
+	overflow: hidden;
+}
+
 .product-card img{
 	width: 100%;
 }
@@ -30,4 +34,24 @@
 
 .product-card .item-actions{
 	text-align: center;
+}
+
+.product-card:hover a.heart-button{
+	opacity: 1;
+}
+a.heart-button{
+	border: 1px solid;
+	border-radius: 50%;
+	height: 30px;
+	width: 30px;
+	line-height: 31px;
+	position: absolute;
+	top: 10px;
+	right: 30px;
+	float: right;
+	text-align: center;
+	z-index: 10;
+	transition: opacity .3s linear, transform .7s cubic-bezier(.56, .48, 0, .99);
+	opacity: 0;
+	
 }
