@@ -8,8 +8,15 @@
 process.env.NODE_ENV = process.env.NODE_ENV || 'development';
 
 var express = require('express');
-var sqldb = require('./sqldb');
+var mongoose = require('mongoose');
 var config = require('./config/environment');
+
+// Connect to MongoDB
+mongoose.connect(config.mongo.uri, config.mongo.options);
+mongoose.connection.on('error', function(err) {
+  console.error('MongoDB connection error: ' + err);
+  process.exit(-1);
+});
 
 // Populate databases with sample data
 if (config.seedDB) { require('./config/seed'); }
@@ -27,11 +34,7 @@ function startServer() {
   });
 }
 
-sqldb.sequelize.sync()
-  .then(startServer)
-  .catch(function(err) {
-    console.log('Server failed to start due to error: %s', err);
-  });
+setImmediate(startServer);
 
 // Expose app
 exports = module.exports = app;
