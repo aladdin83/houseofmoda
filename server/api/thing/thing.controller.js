@@ -10,8 +10,7 @@
 'use strict';
 
 var _ = require('lodash');
-var sqldb = require('../../sqldb');
-var Thing = sqldb.Thing;
+var Thing = require('./thing.model');
 
 function handleError(res, statusCode) {
   statusCode = statusCode || 500;
@@ -41,8 +40,9 @@ function handleEntityNotFound(res) {
 
 function saveUpdates(updates) {
   return function(entity) {
-    return entity.updateAttributes(updates)
-      .then(function(updated) {
+    var updated = _.merge(entity, updates);
+    return updated.saveAsync()
+      .spread(function(updated) {
         return updated;
       });
   };
@@ -51,7 +51,7 @@ function saveUpdates(updates) {
 function removeEntity(res) {
   return function(entity) {
     if (entity) {
-      return entity.destroy()
+      return entity.removeAsync()
         .then(function() {
           res.status(204).end();
         });
@@ -61,18 +61,14 @@ function removeEntity(res) {
 
 // Gets a list of Things
 exports.index = function(req, res) {
-  Thing.findAll()
+  Thing.findAsync()
     .then(responseWithResult(res))
     .catch(handleError(res));
 };
 
 // Gets a single Thing from the DB
 exports.show = function(req, res) {
-  Thing.find({
-    where: {
-      _id: req.params.id
-    }
-  })
+  Thing.findByIdAsync(req.params.id)
     .then(handleEntityNotFound(res))
     .then(responseWithResult(res))
     .catch(handleError(res));
@@ -80,7 +76,7 @@ exports.show = function(req, res) {
 
 // Creates a new Thing in the DB
 exports.create = function(req, res) {
-  Thing.create(req.body)
+  Thing.createAsync(req.body)
     .then(responseWithResult(res, 201))
     .catch(handleError(res));
 };
@@ -90,11 +86,7 @@ exports.update = function(req, res) {
   if (req.body._id) {
     delete req.body._id;
   }
-  Thing.find({
-    where: {
-      _id: req.params.id
-    }
-  })
+  Thing.findByIdAsync(req.params.id)
     .then(handleEntityNotFound(res))
     .then(saveUpdates(req.body))
     .then(responseWithResult(res))
@@ -103,11 +95,7 @@ exports.update = function(req, res) {
 
 // Deletes a Thing from the DB
 exports.destroy = function(req, res) {
-  Thing.find({
-    where: {
-      _id: req.params.id
-    }
-  })
+  Thing.findByIdAsync(req.params.id)
     .then(handleEntityNotFound(res))
     .then(removeEntity(res))
     .catch(handleError(res));

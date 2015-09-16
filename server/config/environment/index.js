@@ -42,6 +42,11 @@ var all = {
         safe: true
       }
     }
+  },
+  facebook: {
+    clientID:     process.env.FACEBOOK_ID || '834657783317244',
+    clientSecret: process.env.FACEBOOK_SECRET || '7431c5344e36d412f0b5cdd342ab35d4',
+    callbackURL:  (process.env.DOMAIN || '') + '/auth/facebook/callback'
   }
 };
 

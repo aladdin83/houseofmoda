@@ -39,6 +39,7 @@
 .product-card:hover a.heart-button{
 	opacity: 1;
 }
+
 a.heart-button{
 	border: 1px solid;
 	border-radius: 50%;

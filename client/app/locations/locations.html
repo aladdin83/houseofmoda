@@ -1,10 +1,10 @@
 <navbar></navbar>
 <div class="container">
 	<div class="row">
-		<div class="col-sm-4">
+		<div class="col-md-4">
 			<img class="sidebar-background" src="assets/images/14337.jpg" alt="">
 		</div>
-		<div class="col-sm-8">
+		<div class="col-md-8">
 			<ui-gmap-google-map center='map.center' zoom='map.zoom'>
 				<ui-gmap-marker ng-repeat="location in locations"
 				idKey='location.id'
@@ -16,16 +16,12 @@
 				<li class="location list-group-item" ng-repeat="location in locations">
 					<h3 class="location-title"><a href="#" ng-click="position(location)"><i class="fa fa-map-marker"></i> {{location.city}}</a></h3>
 					<p class="location-address">
-						{{location.address_line1}}<br/>
-						{{location.address_line2}}<br/>
+						{{location.addressLine1}}<br/>
+						{{location.addressLine2}}<br/>
 						<i class="fa fa-phone"></i> {{location.phone}}
 					</p>		
 				</li>
 			</ul>
-			
-			
-			
-			
 		</div>
 	</div>
 </div>

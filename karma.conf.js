@@ -22,6 +22,8 @@ module.exports = function(config) {
       'client/bower_components/angular-ui-router/release/angular-ui-router.js',
       'client/bower_components/angular-simple-logger/dist/index.js',
       'client/bower_components/angular-google-maps/dist/angular-google-maps.js',
+      'client/bower_components/slick-carousel/slick/slick.min.js',
+      'client/bower_components/angular-slick-carousel/dist/angular-slick.js',
       'client/bower_components/angular-mocks/angular-mocks.js',
       // endbower
       'client/app/app.js',
