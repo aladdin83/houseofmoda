@@ -1,0 +1,31 @@
+<navbar></navbar>
+
+<div class="container">
+  <div class="row">
+    <div class="col-sm-4">
+      <admin-side-panel></admin-side-panel>    
+    </div>
+    <div class="col-sm-8">
+        <table class="table">
+			<thead>
+				<tr>
+					<th>City</th>
+					<th>Address</th>
+					<th>Phone</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr ng-repeat="location in locations">
+					<td>{{location.city}}</td>
+					<td>{{location.addressLine1}}
+						<br/>
+						{{location.addressLine2}}
+					</td>
+					<td>{{location.phone}}</td>
+				</tr>
+			</tbody>
+		</table>    
+    </div>  
+  </div>
+  
+</div>

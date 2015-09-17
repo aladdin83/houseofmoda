@@ -10,6 +10,15 @@ var locationCtrlStub = {
   destroy: 'locationCtrl.destroy'
 };
 
+var authServiceStub = {
+  isAuthenticated: function() {
+    return 'authService.isAuthenticated';
+  },
+  hasRole: function(role) {
+    return 'authService.hasRole.' + role;
+  }
+};
+
 var routerStub = {
   get: sinon.spy(),
   put: sinon.spy(),
@@ -25,7 +34,8 @@ var locationIndex = proxyquire('./index.js', {
       return routerStub;
     }
   },
-  './location.controller': locationCtrlStub
+  './location.controller': locationCtrlStub,
+  '../../auth/auth.service': authServiceStub
 });
 
 describe('Location API Router:', function() {
@@ -56,9 +66,9 @@ describe('Location API Router:', function() {
 
   describe('POST /api/locations', function() {
 
-    it('should route to location.controller.create', function() {
+    it('should verify admin and route to location.controller.create', function() {
       routerStub.post
-                .withArgs('/', 'locationCtrl.create')
+                .withArgs('/', 'authService.hasRole.admin', 'locationCtrl.create')
                 .should.have.been.calledOnce;
     });
 
@@ -66,9 +76,9 @@ describe('Location API Router:', function() {
 
   describe('PUT /api/locations/:id', function() {
 
-    it('should route to location.controller.update', function() {
+    it('should verify admin and route to location.controller.update', function() {
       routerStub.put
-                .withArgs('/:id', 'locationCtrl.update')
+                .withArgs('/:id', 'authService.hasRole.admin' ,'locationCtrl.update')
                 .should.have.been.calledOnce;
     });
 
@@ -76,9 +86,9 @@ describe('Location API Router:', function() {
 
   describe('PATCH /api/locations/:id', function() {
 
-    it('should route to location.controller.update', function() {
+    it('should verify admin and route to location.controller.update', function() {
       routerStub.patch
-                .withArgs('/:id', 'locationCtrl.update')
+                .withArgs('/:id', 'authService.hasRole.admin' ,'locationCtrl.update')
                 .should.have.been.calledOnce;
     });
 
@@ -86,9 +96,9 @@ describe('Location API Router:', function() {
 
   describe('DELETE /api/locations/:id', function() {
 
-    it('should route to location.controller.destroy', function() {
+    it('should verify admin and route to location.controller.destroy', function() {
       routerStub.delete
-                .withArgs('/:id', 'locationCtrl.destroy')
+                .withArgs('/:id', 'authService.hasRole.admin' ,'locationCtrl.destroy')
                 .should.have.been.calledOnce;
     });
 

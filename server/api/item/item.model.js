@@ -6,7 +6,7 @@ var Schema = mongoose.Schema;
 var ItemSchema = new Schema({
   barcode: String,
   price: Number,
-  size: String,
+  sizes: String,
   active: Boolean
 });
 

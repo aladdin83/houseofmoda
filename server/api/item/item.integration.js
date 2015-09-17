@@ -1,15 +1,90 @@
 'use strict';
 
 var app = require('../../app');
+var Item = require('./item.model');
 var request = require('supertest');
+var User = require('../user/user.model');
 
 var newItem;
 
 describe('Item API:', function() {
+    var item;
+    var user;
+    var adminToken;
+    
+    //Clear Items before testing
+    before(function(){
+      return Item.removeAsync().then(function(){
+        item = new Item({
+          barcode: "10500",
+          price: "500",
+          sizes: "S M"
+        });
+      });
+    });
+    
+    before(function(){
+      return User.removeAsync().then(function() {
+      user = new User({
+        name: 'Fake User',
+        email: 'test@test.com',
+        password: 'password',
+        role: 'admin'
+      });
+
+      return user.saveAsync();
+      });
+    });
+    
+    before(function(done){
+      request(app)
+       .post('/auth/local')
+       .send({
+         email: 'test@test.com',
+         password: 'password'
+       })
+       .expect(200)
+       .expect('Content-Type', /json/)
+       .end(function(err, res){
+         adminToken = res.body.token;
+         done();
+       })
+    });
+    
+    //CLear Items after testing
+    after(function(){
+      return Item.removeAsync();
+    });
+    
+    after(function(){
+      return User.removeAsync();
+    });
+    
+    
+    describe('POST /api/items', function(){
+      var resp;
+      beforeEach(function(done){
+        request(app)
+        .post('/api/items')
+        .expect(401)
+        .end(function(err, res){
+          if(err){
+            return done(err);
+          }
+          resp = 401;
+          done();
+        })
+      });
+      
+      it('should respond with forbidden access', function(){
+        resp.should.be.equal(401);
+      });
+      
+    });
 
   describe('GET /api/items', function() {
     var items;
-
+    
     beforeEach(function(done) {
       request(app)
         .get('/api/items')
@@ -31,27 +106,22 @@ describe('Item API:', function() {
   });
 
   describe('POST /api/items', function() {
-    beforeEach(function(done) {
+    
+    it('should respond with the newly created item', function(done) {
       request(app)
         .post('/api/items')
+        .set('authorization', 'Bearer ' + adminToken)
         .send({
-          name: 'New Item',
-          info: 'This is the brand new item!!!'
+          barcode: 'New Item'
         })
         .expect(201)
         .expect('Content-Type', /json/)
         .end(function(err, res) {
-          if (err) {
-            return done(err);
-          }
+          res.body.barcode.should.equal('New Item');
           newItem = res.body;
           done();
         });
-    });
-
-    it('should respond with the newly created item', function() {
-      newItem.name.should.equal('New Item');
-      newItem.info.should.equal('This is the brand new item!!!');
+      
     });
 
   });
@@ -78,8 +148,7 @@ describe('Item API:', function() {
     });
 
     it('should respond with the requested item', function() {
-      item.name.should.equal('New Item');
-      item.info.should.equal('This is the brand new item!!!');
+      item.barcode.should.equal('New Item');
     });
 
   });
@@ -90,9 +159,9 @@ describe('Item API:', function() {
     beforeEach(function(done) {
       request(app)
         .put('/api/items/' + newItem._id)
+        .set('authorization', 'Bearer ' + adminToken)
         .send({
-          name: 'Updated Item',
-          info: 'This is the updated item!!!'
+          barcode: 'Updated Item'
         })
         .expect(200)
         .expect('Content-Type', /json/)
@@ -110,8 +179,22 @@ describe('Item API:', function() {
     });
 
     it('should respond with the updated item', function() {
-      updatedItem.name.should.equal('Updated Item');
-      updatedItem.info.should.equal('This is the updated item!!!');
+      updatedItem.barcode.should.equal('Updated Item');
+    });
+    
+    it('should respond with 401 when not using admin account', function(done){
+      request(app)
+        .put('/api/items/' + newItem._id)
+        .send({
+          barcode: 'Updated Item'
+        })
+        .expect(401)
+        .end(function(err, res){
+          if(err){
+            return done(err);
+          }
+          done();
+        });
     });
 
   });
@@ -121,6 +204,7 @@ describe('Item API:', function() {
     it('should respond with 204 on successful removal', function(done) {
       request(app)
         .delete('/api/items/' + newItem._id)
+        .set('authorization', 'Bearer ' + adminToken)
         .expect(204)
         .end(function(err, res) {
           if (err) {
@@ -133,9 +217,22 @@ describe('Item API:', function() {
     it('should respond with 404 when item does not exist', function(done) {
       request(app)
         .delete('/api/items/' + newItem._id)
+        .set('authorization', 'Bearer ' + adminToken)
         .expect(404)
         .end(function(err, res) {
           if (err) {
+            return done(err);
+          }
+          done();
+        });
+    });
+    
+    it('shout respond with 401 when not using admin account', function(done){
+      request(app)
+        .delete('/api/items/' + newItem._id)
+        .expect(401)
+        .end(function(err, res){
+          if(err){
             return done(err);
           }
           done();

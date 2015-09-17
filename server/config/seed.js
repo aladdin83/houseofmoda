@@ -9,6 +9,7 @@ var Thing = require('../api/thing/thing.model');
 var User = require('../api/user/user.model');
 var Location = require('../api/location/location.model');
 var Item = require('../api/item/item.model');
+var Message = require('../api/message/message.model');
 
 Thing.find({}).removeAsync()
   .then(function () {
@@ -165,3 +166,16 @@ Item.find({}).removeAsync()
         console.log('Finished Populating Items');
       });
   });
+  
+  Message.find({}).removeAsync()
+  .then(function () {
+    Message.createAsync(
+      {
+        name: 'test user 1',
+        phone: '+971502032278',
+        email: 'test@test.com',
+        message: 'message body here'
+      }
+    )}).then(function(){
+      console.log('Finished Populating Messages');
+    });

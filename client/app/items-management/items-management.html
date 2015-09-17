@@ -1,0 +1,28 @@
+<navbar></navbar>
+
+<div class="container">
+  <div class="row">
+    <div class="col-sm-4">
+      <admin-side-panel></admin-side-panel>    
+    </div>
+    <div class="col-sm-8">
+        <table class="table">
+			<thead>
+				<tr>
+					<th>Barcode</th>
+					<th>Price</th>
+					<th>Sizes</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr ng-repeat="item in items">
+					<td>{{item.barcode}}</td>
+					<td>{{item.price}}</td>
+					<td>{{item.sizes}}</td>
+				</tr>
+			</tbody>
+		</table>    
+    </div>  
+  </div>
+  
+</div>
